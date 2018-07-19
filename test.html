@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<meta charset="utf-8">
+<script type="text/javascript" language="javascript" charset="gb2312">
+//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Json遍历↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+//  var arr = [{ 'name' : 'ww' , 'age' : 1 },{ 'name' : 'hh' , 'age' : 2 },{ 'name' : 'nn' , 'age' : 3 }];
+// var json={
+// 	"name": "三毛",
+// 	"age" : 10,
+// 	"sex" : "男",
+// }
+// var test = {
+
+// 		"China" : {
+// 			"Fujian" : {
+// 				"city1" : "quanzho" ,
+// 				"city2" : "xiamen"
+// 			},
+// 			"zhejiang" : 
+// 			{ 	"city1" :"Hangzhou",
+// 				"city2" : "jiaxing"
+// 			}
+// 				},
+
+// 			"USA" : [
+// 			{
+// 			"la":11,
+// 			"newyork":222
+// 			},
+// 			{
+// 				"tt":"tt1",
+// 				"aa": "aa1"
+// 			}
+// 			]
+// }
+// 
+// for (var key in json)
+// {
+// 	console.log(key+"："+json[key]);//属性的名字_______属性的值
+// 	// console.log(json[key]);
+// }
+
+// for (var i in arr){
+// 	for(var key in arr[i])
+// 	{
+// 		console.log(arr[i][key]);
+// 	}
+// }
+// 
+// for (var i in test){
+// 	for(var key in test[i])
+// 	{
+// 		for (var k2 in test[i][key])
+// 		console.log(i+" "+key+" "+test[i][key][k2]);
+// 	}
+// }
+//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑Json遍历↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+/*↓↓↓↓↓↓↓工厂模式↓↓↓↓↓↓↓*/
+function person(name,age,sex){
+	var p = new Object();
+	p.name=name;
+	p.age=age;
+	p.sex=sex;
+	p.say = function(){
+		alert("雷猴");
+	}
+	return p;
+}
+var p0 = person("UU",25,"girl");
+	for (var i in p0)
+	{	
+		console.log(i+" "+p0[i]);//属性成员名称
+	}
+/*↑↑↑↑↑↑↑↑↑↑↑工厂模式↑↑↑↑↑↑↑↑↑↑↑*/
+
+//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓创建对象的三种方式↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+/* 1. 字面量*/
+var p2={name:"字面量方式",age:"1",sex:"none"};
+console.log(p2);
+/*2.构造函数创建对象*/
+function Person(name,age,sex){
+	this.name=name;
+	this.age=age;
+	this.sex=sex;
+}
+var p1 =new Person("Grey",24,"man");
+console.log(p1);
+/*3.Object创建对象*/
+var p3= new Object();
+p3.name="Object方式";
+p3.age=0;
+console.log(p3);
+//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑创建对象的三种方式↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+	
+
+
+
+
+
+</script>
+<body>
+
+</body>
+</html>
