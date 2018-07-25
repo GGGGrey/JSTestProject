@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--添加js文件-->
+<script src="common.js"></script>
+<style>
+    ul {
+        list-style-type: none;
+    }
+
+    .classmate {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        float: left;
+        margin-right: 10px;
+    }
+    
+</style>
+<body>
+<input type="button" value="开始" id="btn">
+
+
+<span id="dv" style="display: block">这是一个span</span>
+
+</body>
+<script>
+
+    //点名练习,一个按钮实现
+    var arr = ["王大", "彩二", "李四", "王五", "six", "7777", "dwqd", "啊啊啊啊", "巴巴爸爸不", "啛啛喳喳"];
+    var time;
+    var name;
+    var namearr;
+    //遍历arr，为每个成员创建一个div
+    for (var i = 0; i < arr.length; i++) {
+        namearr = document.createElement("div");
+        namearr.innerText = arr[i];
+        document.body.appendChild(namearr);
+        namearr.className = "classmate";
+    }
+
+    //随机点名
+    function run() {
+        name = arr[parseInt(Math.random() * arr.length)];
+        for (var i = 0; i < arr.length; i++) {
+            // document.getElementsByTagName("div")[i].setAttribute("class", "classmate");
+            document.getElementsByTagName("div")[i].style.backgroundColor = "";
+            if (document.getElementsByTagName("div")[i].innerText == name) {
+                // document.getElementsByTagName("div")[i].setAttribute("class", "classmate classmateLight");//改类名
+                document.getElementsByTagName("div")[i].style.backgroundColor = "pink";//改style中的bgc
+            }
+        }
+        My$("dv").innerHTML = name;
+    }
+
+    My$("btn").onclick = function () {
+        // console.log(document.getElementsByTagName("div")[0].className);
+        if (this.value == "开始") {
+            this.value = "停止";
+            time = setInterval("run()", 100);
+        }
+        else {
+            this.value = "开始";
+            console.log("最终结果是" + name);
+            clearInterval(time);
+        }
+    };
+
+</script>
+</html>
