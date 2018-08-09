@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--添加js文件-->
+<script src="common.js"></script>
+<script src="Food.js"></script>
+<script src="Snake.js"></script>
+<script src="Game.js"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #map {
+        margin: 20px;
+        width: 900px;
+        height: 600px;
+        position: relative;
+        background-color: grey;
+    }
+</style>
+
+<body>
+<div id="map">
+</div>
+<input type="button" id="btn2" value="开始">
+<input type="button" id="btn" value="暂停">
+
+</body>
+
+
+<script>
+    //取
+    var map = My$("map");
+    var snake = My$("snake");
+
+    //点击按钮进行暂停
+    My$("btn").onclick = function () {
+        clearInterval(time);
+    };
+
+    //点击按钮开始
+    My$("btn2").onclick = function () {
+        clearInterval(time);
+        gm.runSnake(gm.food, gm.map);
+        console.log(gm.food);
+        console.log(gm.map);
+        this.value = "继续";
+    };
+    var time;
+    var gm = new Game(document.querySelector("#map"));
+    gm.init();
+
+
+</script>
+</html>

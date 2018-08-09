@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--添加js文件-->
+<script src="common.js"></script>
+<body>
+<div id="box">
+    <input type="text" style="width: 300px" id="tx">
+    <input type="button" value="搜索" id="btn">
+</div>
+
+</body>
+<script>
+
+    //搜索框
+    var arr = ["小东西", "东成西就", "东西南北", "小小小", "东西", "东东西西", "东北东南"];
+    My$("tx").onkeyup = function () {
+        //每次抬起先判断是否存在div，有则删除
+        if (My$("dv")) {
+            My$("box").removeChild(My$("dv"));
+        }
+        var text = this.value;  //获取文本内容
+        var DataArr = [];             //存放临时数据
+        for (var i = 0; i < arr.length && text != ""; i++) {
+
+            if (arr[i].indexOf(text, 0) != -1) {//搜索到值后
+                DataArr.push(arr[i]);       //追加值到临时数组
+            }
+        }
+        if (this.value.length == 0 || DataArr.length == 0)//如文本框为空，临时数组为空
+        {   //若已有Div则删除
+            if (My$("dv")) {
+                My$("box").removeChild(My$("dv"));
+            }
+            return;
+        }
+        //创建div
+        var obj = document.createElement("div");
+        My$("box").appendChild(obj);
+        obj.id = "dv";
+        obj.style.width = "300px";
+        // obj.style.height = "100px";
+        obj.style.border = "1px solid black";
+
+        //循环遍历临时数组，创建对应p标签
+        for (var i = 0; i < DataArr.length; i++) {
+            //创建p
+            var pObj = document.createElement("p");
+            My$("dv").appendChild(pObj);
+            setInnerText(pObj, DataArr[i]);
+            pObj.style.height = "20px";
+            pObj.style.margin = "0px";
+            pObj.style.padding = "0px";
+            pObj.onmouseover = function () {
+                this.style.backgroundColor = "pink";
+            };
+            pObj.onmouseout = function () {
+                this.style.backgroundColor = "";
+            };
+        }
+    };
+</script>
+</html>

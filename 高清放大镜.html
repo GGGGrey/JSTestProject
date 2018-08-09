@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--添加js文件-->
+<script src="common.js"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        /*cursor: url("mxd_1.bmp"), pointer;*/
+    }
+
+    #box {
+        margin: 100px;
+        width: 300px;
+        height: 450px;
+        /*background-color: black;*/
+        border: 1px solid black;
+        position: relative;
+    }
+
+    #big {
+        width: 400px;
+        height: 400px;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 110%;
+        background-color: green;
+        display: none;
+    }
+
+    #mask {
+        width: 200px;
+        height: 200px;
+        /*background-color: yellow;*/
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: none;
+        cursor: move;
+        background: rgb(255, 255, 0, 0.4);
+    }
+
+    #small {
+        position: relative;
+    }
+
+</style>
+
+<body>
+<!--<img src="mxd_1.bmp" alt="" id="img">-->
+</body>
+<div id="box">
+    <!--大图-->
+    <div id="big">
+        <img id="bigImg" src="img/高清放大镜.png" alt="">
+    </div>
+    <!--小图-->
+    <div id="small">
+        <img src="img/高清放大镜.png" width="100%" height="100%" alt="">
+        <!--小图遮挡层-->
+        <div id="mask"></div>
+    </div>
+</div>
+
+
+<script>
+    var box = My$("box");
+    var small = My$("small");
+    var big = My$("big");
+    var mask = small.children[1];
+    //鼠标进入显示遮挡层和大图
+    box.onmouseover = function (e) {
+        big.style.display = "block";
+        mask.style.display = "block";
+    };
+    //鼠标离开隐藏遮挡层和大图
+    box.onmouseout = function (e) {
+        big.style.display = "none";
+        mask.style.display = "none";
+    };
+    //鼠标在small中移动，遮挡层跟随
+    small.onmousemove = function (e) {
+        var x = e.clientX - mask.offsetWidth / 2;
+        var y = e.clientY - mask.offsetHeight / 2;
+        //box的margin距离
+        x = x - 100;
+        y = y - 100;
+        // //判断，使遮罩层在框内
+        x = x < 0 ? 0 : x;
+        y = y < 0 ? 0 : y;
+        x = x > small.offsetWidth - mask.offsetWidth ? small.offsetWidth - mask.offsetWidth : x;
+        y = y > small.offsetHeight - mask.offsetHeight ? small.offsetHeight - mask.offsetHeight : y;
+        mask.style.left = x + "px";
+        mask.style.top = y + "px";
+
+        //遮挡层移动距离/遮挡层的最大移动距离=大图移动距离/大图最大移动距离
+        //大图最大移动距离
+        var maxX = bigImg.offsetWidth - big.offsetWidth;
+        var maxY = bigImg.offsetHeight - big.offsetHeight;
+
+        //大图移动距离（坐标）
+        var bigImgMoveX = x * maxX / (small.offsetWidth - mask.offsetWidth);
+        var bigImgMoveY = y * maxY / (small.offsetHeight - mask.offsetHeight);
+
+        //大图在div里反向移动
+        bigImg.style.marginLeft = -bigImgMoveX + "px";
+        bigImg.style.marginTop = -bigImgMoveY + "px";
+    };
+</script>
+</html>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>练习</title>
 </head>
 <meta charset="utf-8">
 <script type="text/javascript" language="javascript" charset="gb2312">
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Json遍历↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
 //  var arr = [{ 'name' : 'ww' , 'age' : 1 },{ 'name' : 'hh' , 'age' : 2 },{ 'name' : 'nn' , 'age' : 3 }];
 // var json={
 // 	"name": "三毛",
@@ -13,7 +14,6 @@
 // 	"sex" : "男",
 // }
 // var test = {
-
 // 		"China" : {
 // 			"Fujian" : {
 // 				"city1" : "quanzho" ,
@@ -24,7 +24,6 @@
 // 				"city2" : "jiaxing"
 // 			}
 // 				},
-
 // 			"USA" : [
 // 			{
 // 			"la":11,
@@ -42,7 +41,6 @@
 // 	console.log(key+"："+json[key]);//属性的名字_______属性的值
 // 	// console.log(json[key]);
 // }
-
 // for (var i in arr){
 // 	for(var key in arr[i])
 // 	{
@@ -57,46 +55,119 @@
 // 		console.log(i+" "+key+" "+test[i][key][k2]);
 // 	}
 // }
+
 //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑Json遍历↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 /*↓↓↓↓↓↓↓工厂模式↓↓↓↓↓↓↓*/
-function person(name,age,sex){
-	var p = new Object();
-	p.name=name;
-	p.age=age;
-	p.sex=sex;
-	p.say = function(){
-		alert("雷猴");
-	}
-	return p;
-}
-var p0 = person("UU",25,"girl");
-	for (var i in p0)
-	{	
-		console.log(i+" "+p0[i]);//属性成员名称
-	}
+// function person(name,age,sex){
+// 	var p = new Object();
+// 	p.name=name;
+// 	p.age=age;
+// 	p.sex=sex;
+// 	p.say = function(){
+// 		alert("雷猴");
+// 	}
+// 	return p;
+// }
+//
+// var p0 = person("UU",25,"girl");
+// 	for (var i in p0)
+// 	{
+// 		console.log(i+" "+p0[i]);//属性成员名称
+// 	}
 /*↑↑↑↑↑↑↑↑↑↑↑工厂模式↑↑↑↑↑↑↑↑↑↑↑*/
 
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓创建对象的三种方式↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-/* 1. 字面量*/
-var p2={name:"字面量方式",age:"1",sex:"none"};
-console.log(p2);
-/*2.构造函数创建对象*/
-function Person(name,age,sex){
-	this.name=name;
-	this.age=age;
-	this.sex=sex;
-}
-var p1 =new Person("Grey",24,"man");
-console.log(p1);
-/*3.Object创建对象*/
-var p3= new Object();
-p3.name="Object方式";
-p3.age=0;
-console.log(p3);
+
+// /* 1. 字面量*/
+// var p2={name:"字面量方式",age:"1",sex:"none"};
+// console.log(p2);
+// /*2.构造函数创建对象*/
+// function Person(name,age,sex){
+// 	this.name=name;
+// 	this.age=age;
+// 	this.sex=sex;
+// }
+// var p1 =new Person("Grey",24,"man");
+// console.log(p1);
+// /*3.Object创建对象*/
+// var p3= new Object();
+// p3.name="Object方式";
+// p3.age=0;
+// console.log(p3);
+
 //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑创建对象的三种方式↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-	
+//↓↓↓↓↓↓↓↓↓↓↓↓字符串案例↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+	//*******************************查找指定字符串***************************************************/
+	// var str = "郭承哲|过程中|高成长|搞事情";
+	// var name = prompt("请输入三个字人名","");
+	// for(var i=0;name.length!=3;i++)
+	// {
+	//     name=prompt("输入错误请重新输入三个字","");
+	// }
+     //    var index = str.indexOf(name);
+     //    if (index != -1) {
+     //        var n = str.substr(index, name.length);
+     //        console.log(n);
+     //    }
+     //    else console.log("查无此人");
+	// /************************************查找指定的字符串出现次数，返回次数************************************/
+	// var str = "asdo do sd aswodq  o ddo";
+	// var num=0;
+	// var index=0;
+	// var key=prompt("输入要找的字符串","");
+	// while((index=str.indexOf(key,index))!==-1)
+	// {
+	//     console.log("索引"+index);
+	//     index+=key.length;
+	//     num++;
+	// }
+	// console.log(num+"个");
+	// /*******************************查找每个字符出现几次**************************/
+	// var str="cabdacAebbdAbcA";
+	// str=str.toLocaleLowerCase();	//转小写
+	// var obj={};						//创建空对象：字母作为键，出现次数作为值
+	// for(var i=0;i<str.length;i++)
+	// {
+	//     if(obj[str[i]]){
+	// 		obj[str[i]]++;
+	// 	}
+	// 	else{
+	//         obj[str[i]]=1;				//如果字母首次出现，值设为1
+	// 	}
+	// }
+	// for(var i in obj)
+	// {
+	//     console.log(i+"出现次数"+obj[i]);
+	// }
+
+//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑字符串案例↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+//↓↓↓↓↓↓↓↓↓↓↓↓数组↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+	var arr = [10,0,20,30,40,0,50,600,0];
+	var flag=arr.every(function (ele,index) {
+	    return ele>40;
+	});
+	var newArr=arr.map(function (ele) {
+		return (ele!==0);
+	});
+var newArr2=arr.filter(function (ele) {
+    return (ele!==0);
+});
+	console.log(newArr);
+console.log(newArr2);
+
+	// console.log(newArr);
+
+//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑数组↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+
+
+
+
 
 
 

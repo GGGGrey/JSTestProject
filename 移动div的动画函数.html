@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="common.js"></script>
+</head>
+<!--添加js文件-->
+<script src="common.js"></script>
+<style>
+    div {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+        position: absolute;
+        left: 130px;
+    }
+</style>
+<body>
+<div id="dv">
+</div>
+<input type="button" id="btn" value="移到400">
+<input type="button" id="btn2" value="到800">
+</body>
+
+<script>
+
+    // function animate(element, target) {
+    //     clearInterval(element.timeId);
+    //     element.timeId = setInterval(function () {
+    //         //获取元素当前位置，数字类型
+    //         var current = element.offsetLeft;
+    //         //每次移动距离
+    //         var step = 10;
+    //         step = current < target ? step : -step;
+    //         //当前移动的位置
+    //         current += step;
+    //         if (Math.abs(current - target) > Math.abs(step)) {
+    //             element.style.left = current + "px";
+    //         } else {
+    //             clearInterval(element.timeId);
+    //             element.style.left = target + "px";
+    //         }
+    //     }, 50);
+    // }
+console.log(getStyle(My$("dv"),"backgroundColor"));
+    //多种属性修改变速动画函数
+    function animate(element, json) {
+        clearInterval(element.timeId);
+        element.timeId = setInterval(function () {
+            //判断是否全部到达目标值
+            var flag=true;
+            for (var attr in json) {
+                var current = parseInt(getStyle(element, attr));
+                var target = json[attr];
+                //每次移动距离,变速快到慢
+                var step = (target - current) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                //当前移动的位置
+                current += step;
+                element.style[attr] = current + "px";
+                if(current!=target){//判断是否有任意一项未达到目标值
+                    flag=false;
+                }
+                if(flag){
+                    clearInterval(element.timeId);
+                }
+            }
+        }, 50);
+    }
+
+    My$("btn").onclick = function () {
+        animate(My$("dv"),{"left":400,"width":300,"top":100,"height":300});
+    };
+    My$("btn2").onclick = function () {
+        animate(My$("dv"),{"left":800,"width":300,"top":100,"height":300});
+    };
+
+
+</script>
+</html>
